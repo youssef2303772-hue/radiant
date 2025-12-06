@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiant — Natural Repair, Effortless Shine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-yellow: #D4AF37;
+            --primary-brown: #6B4423;
+            --light-brown: #8B6F47;
+            --cream: #FFF8F0;
+            --text-dark: #3D2817;
+            --text-light: #7A6B5F;
+            --white: #FFFFFF;
+            --border-light: #E8DCD0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '';
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-brown));
+            border-radius: 50%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .nav-cta {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-brown);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* PAGE CONTAINER */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--cream) 0%, #FFFBF7) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-brown);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(107, 68, 35, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-brown);
+            border: 2px solid var(--primary-brown);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-brown);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--light-brown) 100%);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(107, 68, 35, 0.15);
+        }
+
+        /* FEATURES GRID */
+        .features {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--light-brown));
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-brown);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* PRODUCT PAGE */
+        .product-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--light-brown) 100%);
+            border-radius: 20px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(107, 68, 35, 0.15);
+        }
+
+        .product-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--primary-yellow);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-benefits {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .product-benefits h4 {
+            color: var(--primary-brown);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            color: var(--primary-yellow);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quantity-selector label {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .quantity-selector input {
+            width: 80px;
+            padding: 0.7rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* INGREDIENTS */
+        .ingredients {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--cream) 0%, #FFFBF7) 100%);
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ingredient-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .ingredient-card:hover {
+            border-color: var(--primary-yellow);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .ingredient-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .ingredient-card h4 {
+            color: var(--primary-brown);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .ingredient-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-yellow);
+        }
+
+        .stars {
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: var(--primary-brown);
+            font-weight: 600;
+        }
+
+        /* ABOUT PAGE */
+        .about-section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--light-brown) 100%);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .mission-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-box p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #CCC;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            color: #AAA;
+            font-size: 0.9rem;
+        }
+
+        /* ORDER PAGE */
+        .checkout-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .order-form {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .order-form h3 {
+            color: var(--primary-brown);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cart-summary {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-light);
+            height: fit-content;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cart-item-details h4 {
+            color: var(--primary-brown);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-details p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .cart-item-price {
+            color: var(--primary-yellow);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-align: right;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary-yellow);
+        }
+
+        .payment-methods {
+            margin: 2rem 0;
+        }
+
+        .payment-methods h4 {
+            color: var(--primary-brown);
+            margin-bottom: 1rem;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-yellow);
+            background: #FFFBF7;
+        }
+
+        .payment-option input[type="radio"] {
+            margin-right: 1rem;
+        }
+
+        /* GALLERY */
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--light-brown) 100%);
+            border-radius: 10px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.85rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .product-layout,
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">Radiant</div>
+        <ul>
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('product')">Product</a></li>
+            <li><a onclick="showPage('about')">About</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+            <li><button class="nav-cta" onclick="showPage('order')">Order Now</button></li>
+        </ul>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Radiant</h1>
+                    <p>"Natural Repair, Effortless Shine."</p>
+                    <p style="font-size: 1rem; font-style: normal; margin-bottom: 2rem;">Experience the power of premium natural oils. Our 3-in-1 Hair Food repairs, nourishes, and transforms your hair with just one product.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showPage('product')">Buy Now</button>
+                        <button class="btn btn-secondary" onclick="showPage('about')">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    🫗 Product Jar<br><br>
+                    <small>100g Radiant 3-in-1<br>Hair Food</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3-IN-1 FORMULA HIGHLIGHT -->
+        <section class="features">
+            <h2 class="section-title">3-in-1 Formula Highlights</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧴</div>
+                    <h3>Conditioner</h3>
+                    <p>Deep conditioning action for silky-smooth hair that looks healthier instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Deep Mask</h3>
+                    <p>Intensive repair treatment that restores damaged, dry, and compromised hair.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Leave-In Treatment</h3>
+                    <p>Lightweight formula perfect for everyday nourishment and frizz control.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INGREDIENTS SECTION -->
+        <section class="ingredients">
+            <h2 class="section-title">Premium Natural Ingredients</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🥜</div>
+                    <h4>Macadamia Oil</h4>
+                    <p>Deep moisture & softness</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌰</div>
+                    <h4>Jojoba Seed Oil</h4>
+                    <p>Scalp health & shine</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌸</div>
+                    <h4>Sweet Almond Oil</h4>
+                    <p>Repair & strengthen</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🧈</div>
+                    <h4>Lanolin</h4>
+                    <p>Lock in moisture</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌾</div>
+                    <h4>Shea Butter</h4>
+                    <p>Nourish & soften</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🌻</div>
+                    <h4>Sunflower Oil</h4>
+                    <p>Antioxidant protection</p>
+                </div>
+                <div class="ingredient-card">
+                    <div class="ingredient-icon">🫘</div>
+                    <h4>Soybean Oil</h4>
+                    <p>Restore & brighten</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="testimonials">
+            <h2 class="section-title">Customer Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"My hair has never felt so soft and silky. This product is a game-changer! I use it as a leave-in treatment daily."</p>
+                    <p class="testimonial-author">— Amira S.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The deep mask treatment saved my damaged hair. After just 2 weeks, my hair is healthy and shiny again."</p>
+                    <p class="testimonial-author">— Nadia M.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Finally a product that works for all my hair needs. One jar lasts forever. Worth every penny!"</p>
+                    <p class="testimonial-author">— Zainab L.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRODUCT PAGE -->
+    <div id="product" class="page">
+        <section class="product-section">
+            <h2 class="section-title" style="margin-bottom: 3rem;">Radiant 3-in-1 Repairing Hair Food</h2>
+            <div class="product-layout">
+                <div class="product-image">
+                    🫗<br><br>
+                    <small>Premium 100g Jar<br>Radiant Hair Food</small>
+                </div>
+                <div class="product-info">
+                    <h2>Radiant 3-in-1 Hair Food</h2>
+                    <p style="color: var(--text-light); font-size: 1rem;">Conditioner • Deep Mask • Leave-In Treatment</p>
+                    <div class="price">299.95 EGP</div>
+
+                    <div class="product-benefits">
+                        <h4>Key Benefits</h4>
+                        <div class="benefits-list">
+                            <div class="benefit-item">Deep Repair</div>
+                            <div class="benefit-item">Moisture</div>
+                            <div class="benefit-item">Shine</div>
+                            <div class="benefit-item">Frizz Control</div>
+                            <div class="benefit-item">Softening</div>
+                            <div class="benefit-item">Strengthening</div>
+                        </div>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <label for="qty">Quantity:</label>
+                        <input type="number" id="qty" value="1" min="1">
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPage('order')">Add to Cart & Order</button>
+                </div>
+            </div>
+
+            <!-- INGREDIENTS DETAILED -->
+            <div style="margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 2rem;">Full Ingredient List</h3>
+                <div style="max-width: 800px; margin: 0 auto; background: var(--cream); padding: 2rem; border-radius: 12px;">
+                    <ul style="list-style: none; color: var(--text-dark);">
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Macadamia Oil</strong> — Deep moisturization & premium conditioning</li>
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Jojoba Seed Oil</strong> — Scalp health & natural shine</li>
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Sweet Almond Oil</strong> — Repair & strengthen hair strands</li>
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Lanolin</strong> — Moisture lock & frizz control</li>
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Shea Butter</strong> — Nourish & soften</li>
+                        <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-light);"><strong>Soybean Oil</strong> — Restore & brighten</li>
+                        <li style="padding: 0.8rem 0;"><strong>Sunflower Oil</strong> — Antioxidant protection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- HOW TO USE -->
+            <div style="margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 2rem;">How to Use</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                    <div style="background: var(--cream); padding: 2rem; border-radius: 12px; text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">1️⃣</div>
+                        <h4 style="color: var(--primary-brown); margin-bottom: 0.8rem;">As Conditioner</h4>
+                        <p style="color: var(--text-light); margin: 0;">Apply to damp hair after shampooing. Leave for 2-3 minutes, then rinse for silky smooth results.</p>
+                    </div>
+                    <div style="background: var(--cream); padding: 2rem; border-radius: 12px; text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">2️⃣</div>
+                        <h4 style="color: var(--primary-brown); margin-bottom: 0.8rem;">As Deep Mask</h4>
+                        <p style="color: var(--text-light); margin: 0;">Apply generously to damp hair. Leave for 15-20 minutes (or overnight). Rinse thoroughly for deep repair.</p>
+                    </div>
+                    <div style="background: var(--cream); padding: 2rem; border-radius: 12px; text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">3️⃣</div>
+                        <h4 style="color: var(--primary-brown); margin-bottom: 0.8rem;">As Leave-In</h4>
+                        <p style="color: var(--text-light); margin: 0;">Apply small amounts to damp or dry hair. Style as usual. No rinsing needed for daily nourishment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <section class="about-section">
+            <h2 class="section-title" style="margin-bottom: 3rem;">About Radiant</h2>
+            
+            <div class="about-text">
+                <h3 style="color: var(--primary-brown); margin-bottom: 1rem;">Our Story</h3>
+                <p>Radiant was born from a simple belief: every person deserves to have healthy, beautiful, and shiny hair without compromising on natural ingredients. We started on a mission to create a product that could do it all—a true 3-in-1 solution that replaces multiple bottles with one powerful formula.</p>
+            </div>
+
+            <div class="mission-box">
+                <h3>Our Mission</h3>
+                <p>To empower individuals to embrace their natural beauty with premium, effective, and sustainable hair care solutions that nourish from root to tip.</p>
+            </div>
+
+            <div class="about-text">
+                <h3 style="color: var(--primary-brown); margin-bottom: 1rem;">Why Radiant?</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-dark);">
+                    <li style="margin-bottom: 0.8rem;"><strong>100% Natural Ingredients:</strong> No harmful chemicals, silicones, or sulfates. Pure, premium oils and butters.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong>Multi-Purpose Formula:</strong> Conditioner, deep mask, and leave-in treatment in one jar.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong>Eco-Friendly Packaging:</strong> Sustainable glass jar that you can reuse or recycle.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong>Results You Can See:</strong> Visible improvement in hair texture, shine, and health within 2-3 weeks.</li>
+                </ul>
+            </div>
+
+            <div class="about-text" style="margin-top: 2rem;">
+                <h3 style="color: var(--primary-brown); margin-bottom: 1rem;">Sustainability Approach</h3>
+                <p>At Radiant, sustainability isn't just a buzzword—it's our commitment. We source our ingredients responsibly, partner with ethical suppliers, and ensure every step of our supply chain reflects our values. Our glass packaging is 100% recyclable and designed to last, encouraging our community to reduce waste.</p>
+            </div>
+
+            <div class="about-text">
+                <h3 style="color: var(--primary-brown); margin-bottom: 1rem;">From Seed to Shine</h3>
+                <p><strong>Upstream:</strong> We partner with organic farms and suppliers who maintain the highest ethical and environmental standards. Every ingredient is carefully sourced to ensure quality and sustainability.</p>
+                <p><strong>Production:</strong> Our manufacturing process uses minimal processing to preserve the integrity of natural oils. We maintain strict quality control at every stage.</p>
+                <p><strong>Downstream:</strong> Our glass jars are designed for reuse and recycling. We encourage customers to refill or responsibly recycle their packaging, completing the circle of sustainability.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section class="about-section">
+            <h2 class="section-title" style="margin-bottom: 3rem;">Contact Us</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <h3 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Get in Touch</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">📧 Email</h4>
+                        <p style="color: var(--text-light); margin: 0;"><a href="mailto:hello@radiant.com" style="color: var(--primary-yellow);">hello@radiant.com</a></p>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">📱 Instagram</h4>
+                        <p style="color: var(--text-light); margin: 0;"><a href="https://instagram.com/radiant_nutritional" style="color: var(--primary-yellow);">@radiant_nutritional</a></p>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">🕐 Business Hours</h4>
+                        <p style="color: var(--text-light); margin: 0;">Monday - Friday: 9 AM - 6 PM EET<br>Saturday: 10 AM - 4 PM EET<br>Sunday: Closed</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" style="margin: 0;">
+                    <h3 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Send Us a Message</h3>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- ORDER PAGE -->
+    <div id="order" class="page">
+        <section class="checkout-container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">Complete Your Order</h2>
+            
+            <div class="checkout-layout">
+                <div class="order-form">
+                    <h3>Delivery Information</h3>
+                    
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+20 (XXX) XXX-XXXX" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <input type="text" placeholder="Street address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" placeholder="City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Requests or Notes</label>
+                        <textarea placeholder="Any special instructions for delivery..." style="min-height: 100px;"></textarea>
+                    </div>
+
+                    <h3 style="color: var(--primary-brown); margin-top: 2rem; margin-bottom: 1rem;">Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-option">
+                            <input type="radio" name="payment" id="cash" value="cash" checked>
+                            <label for="cash" style="margin: 0; cursor: pointer; flex: 1;">💵 Cash on Delivery</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" name="payment" id="bank" value="bank">
+                            <label for="bank" style="margin: 0; cursor: pointer; flex: 1;">🏦 Bank Transfer</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" name="payment" id="card" value="card">
+                            <label for="card" style="margin: 0; cursor: pointer; flex: 1;">💳 Credit/Debit Card</label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Complete Order</button>
+                </div>
+
+                <div class="cart-summary">
+                    <h3 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Order Summary</h3>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>Radiant 3-in-1 Hair Food</h4>
+                            <p>100g Jar × 1</p>
+                        </div>
+                        <div class="cart-item-price">299.95 EGP</div>
+                    </div>
+
+                    <div style="background: var(--cream); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">📦 Free shipping on orders over 500 EGP</p>
+                    </div>
+
+                    <div style="display: grid; gap: 0.8rem; margin: 1.5rem 0;">
+                        <div style="display: flex; justify-content: space-between; color: var(--text-light);">
+                            <span>Subtotal</span>
+                            <span>299.95 EGP</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: var(--text-light);">
+                            <span>Shipping</span>
+                            <span>30 EGP</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: var(--text-light); font-size: 0.9rem;">
+                            <span>Tax (14%)</span>
+                            <span>46.19 EGP</span>
+                        </div>
+                    </div>
+
+                    <div class="cart-total">
+                        Total: 376.14 EGP
+                    </div>
+
+                    <div style="background: var(--cream); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <h4 style="color: var(--primary-brown); margin-bottom: 0.8rem;">Have a Coupon?</h4>
+                        <input type="text" placeholder="Enter coupon code" style="width: 100%; padding: 0.6rem; border: 2px solid var(--border-light); border-radius: 6px; margin-bottom: 0.8rem;">
+                        <button class="btn btn-secondary" style="width: 100%;">Apply Coupon</button>
+                    </div>
+
+                    <div style="background: #FFF3CD; border-left: 4px solid var(--primary-yellow); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <p style="color: #856404; margin: 0; font-size: 0.9rem;">✨ <strong>Tip:</strong> Follow us on Instagram @radiant_nutritional for exclusive discounts and hair care tips!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Radiant</h4>
+                <p>Premium natural hair care solutions that repair, nourish, and transform. 100% natural ingredients, zero compromise.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('product')">Our Product</a>
+                <a onclick="showPage('about')">About Us</a>
+                <a onclick="showPage('contact')">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <a href="https://instagram.com/radiant_nutritional">🔗 Instagram</a>
+                <a href="mailto:hello@radiant.com">📧 Email</a>
+                <p style="margin-top: 1rem; color: #AAA;">📍 Egypt</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p style="margin: 0;">&copy; 2025 Radiant Beauty. All rights reserved. | Handcrafted with love 💛</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Handle smooth nav behavior
+            });
+        });
+
+        // Form submission (placeholder)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you! Your message has been received. We\'ll get back to you soon.');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
